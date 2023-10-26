@@ -2,8 +2,6 @@ package templates;
 import NoteBody.*;
 import Instuments.*;
 
-import javax.xml.transform.Result;
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -50,8 +48,8 @@ public class NotesActions implements INotesActions {
         String result = "";
         //INSERT INTO `NoteBook` (`DateID`, `Note_text`, `Priority`) VALUES ('s43ts', 'note new 30.09', 'MEDIUM');
         try {
-           rs =query.executeUpdate("INSERT INTO `NoteBook` (`DateID`, `Note_text`, `Priority`) VALUES ('" + note.getNoteId() + "', '" + note.getNoteText() + "', '" + note.getPriority() + "')");
-           result="Added "+rs+"rows";
+           rs =query.executeUpdate("INSERT INTO `NoteBook` (`NoteID`, `Note_text`, `Priority`) VALUES ('" + note.getNoteId() + "', '" + note.getNoteText() + "', '" + note.getPriority() + "')");
+           result="Added "+rs+" rows";
         }
         catch (Exception e){
             System.out.println("Connection failed..."+ e);
@@ -61,8 +59,20 @@ public class NotesActions implements INotesActions {
     }
 
     @Override
-    public void deleteNote(String NoteId) {
-
+    public String deleteNote(String NoteId) {
+        Statement query = setUp();
+        String result = "";
+        //INSERT INTO `NoteBook` (`DateID`, `Note_text`, `Priority`) VALUES ('s43ts', 'note new 30.09', 'MEDIUM');
+        try {
+            query.executeUpdate("DELETE FROM `NoteBook` WHERE `NoteID` = '"+ NoteId+"'");
+            result="deleted row with ID "+NoteId;
+        }
+        catch (Exception e){
+            System.out.println("Connection failed..."+ e);
+        }
+        end(query);
+        return result;
+//DELETE FROM `NoteBook` WHERE `Priority` = 'HIGH'
     }
 
     @Override

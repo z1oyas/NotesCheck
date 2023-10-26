@@ -12,8 +12,8 @@ public class Main {
         INotesActions noteBook = new NotesActions();
         //DbConnector newConnection = new DbConnector();
         //newConnection.connect();
-        noteBook.addNote("meme",1);
-
+       String p =  noteBook.deleteNote("vs0NY");
+        System.out.println(p);
 //        try {
 //            if (args[0].equals("start")) {
 //                System.out.println("Это программа для создания заметок-напоминалок" +

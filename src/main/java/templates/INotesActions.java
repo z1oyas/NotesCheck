@@ -8,8 +8,10 @@ public interface INotesActions {
 
     /**
      * удаление заметки ( по айдишнику)
+     *
+     * @return
      */
-    void deleteNote(String NoteId);
+    String deleteNote(String NoteId);
 
     /**
      * просмотр рейтинга заметки - не приоритет? еще одна градация?
